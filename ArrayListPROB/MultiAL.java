@@ -16,11 +16,11 @@ public class MultiAL {
         mainlist.add(list1);
         mainlist.add(list2);
         System.out.println(list);
-        
+
         System.out.println(list.get(0)+list.get(1));
 
         for (int i = 0; i < mainlist.size(); i++) {
-            ArrayList<Integer> curr = mainlist.get(i);//.get fn se sirf elements print hotai hai bracket nhi hotai print 
+            ArrayList<Integer> curr = mainlist.get(i);//.get fn se sirf elements print hotai hai bracket nhi hotai print
             for (int j = 0; j < curr.size(); j++) {
                 System.out.print(curr.get(j)+" ");
             }

@@ -1,6 +1,6 @@
-package BST;
+package BST;//O(n)
 
-public class ValidateBst {
+public class MirrorABst {
 
   static class Node {
 
@@ -9,27 +9,31 @@ public class ValidateBst {
 
     public Node(int data) {
       this.data = data;
-      this.left = null;
       this.right = null;
+      this.left = null;
     }
   }
-  public static boolean isValidBST(Node root,Node min,Node max){
+  public static Node createMirror(Node root){
     if(root==null){
-      return true;
+       return null;
     }
-    if(min!=null&&root.data<=min.data){
-      return false;
-    }
-    else if(max!=null&&root.data>=max.data){
-      return false;
-    }
-    return isValidBST(root.left, min, root)
-    &&isValidBST(root.right, root, max);
+    Node lefts = createMirror(root.left);
+    Node rights = createMirror(root.right);
+root.left = rights;
+root.right=lefts;
+return root;
 
+  }
+  public static void preOrder(Node root){
+    if(root==null){
+        return;
+    }
+    System.out.print(root.data+" ");
+    preOrder(root.left);
+    preOrder(root.right);
   }
 
   public static void main(String args[]) {
-    //binary search tree with hand implementation
     Node root = new Node(5);
     root.left = new Node(3);
     root.right = new Node(8);
@@ -39,6 +43,8 @@ public class ValidateBst {
     root.right.right = new Node(9);
     root.left.left.left = new Node(1);
     root.right.right.right = new Node(10);
-    System.out.println(isValidBST(root, null, null));
+    root = createMirror(root);
+    preOrder(root);
+
   }
 }
